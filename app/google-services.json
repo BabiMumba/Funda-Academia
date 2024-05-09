@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828963147069",
+    "project_id": "funda-academia",
+    "storage_bucket": "funda-academia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828963147069:android:d4edeebe6edcfadae6c954",
+        "android_client_info": {
+          "package_name": "cd.bmfundacademia.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0M7bin4IFcQjmhtCOqZ8bafhxEc77x1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

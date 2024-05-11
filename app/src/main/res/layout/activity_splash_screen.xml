@@ -8,14 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".Activity.SplashScreenActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradien_new"
-        android:src="@drawable/graduates"
-        android:scaleType="centerCrop"
-        android:layout_alignParentBottom="true"
-        />
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,9 +21,9 @@
         android:layout_centerInParent="true"
         >
         <ImageView
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/logo_funda"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/new_txt"
             android:layout_gravity="center"
             />
     </LinearLayout>

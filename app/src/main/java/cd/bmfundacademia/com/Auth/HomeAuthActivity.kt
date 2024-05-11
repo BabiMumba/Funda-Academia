@@ -32,7 +32,7 @@ class HomeAuthActivity : AppCompatActivity() {
 
 
         //donner le lien de la vidéo dans le Raw
-        binding.videoView.setVideoPath("android.resource://" + packageName + "/" + R.raw.ff_a)
+        binding.videoView.setVideoPath("android.resource://" + packageName + "/" + R.raw.fundv)
         binding.videoView.start()//pour démarrer la vidéo
         binding.videoView.setOnPreparedListener { mp -> mp.isLooping = true }//pour que la vidéo soit en boucle
 

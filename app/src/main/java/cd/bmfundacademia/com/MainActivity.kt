@@ -17,15 +17,6 @@ class MainActivity : AppCompatActivity() {
       //  enableEdgeToEdge()
         setContentView(binding.root)
 
-        window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-
-
-
-
-        //donner le lien de la vidéo dans le Raw
-        binding.videoView.setVideoPath("android.resource://" + packageName + "/" + R.raw.ff_a)
-        binding.videoView.start()//pour démarrer la vidéo
-        binding.videoView.setOnPreparedListener { mp -> mp.isLooping = true }//pour que la vidéo soit en boucle
 
 
 
@@ -34,21 +25,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    }
-
-    override fun onResume() {
-        binding.videoView.resume()
-        super.onResume()
-    }
-
-    override fun onPause() {
-        binding.videoView.suspend()
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        binding.videoView.stopPlayback()
-        super.onDestroy()
     }
 
 }

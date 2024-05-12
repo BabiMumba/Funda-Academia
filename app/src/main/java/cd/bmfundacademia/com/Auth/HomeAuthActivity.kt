@@ -38,11 +38,11 @@ class HomeAuthActivity : AppCompatActivity() {
 
 
         binding.loginBtn.btnModelUi.setOnClickListener {
-            Utils.Intent1(this,RegisterActivity::class.java)
+            Utils.Intent1(this,LoginActivity::class.java)
 
         }
         binding.registerBtn.btnModelUi.setOnClickListener {
-            Utils.Intent1(this,LoginActivity::class.java)
+            Utils.Intent1(this,RegisterActivity::class.java)
         }
 
 

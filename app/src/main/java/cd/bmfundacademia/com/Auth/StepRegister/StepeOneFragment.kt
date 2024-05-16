@@ -1,5 +1,6 @@
 package cd.bmfundacademia.com.Auth.StepRegister
 
+//creer par babi mumba le 12/05/2024 a 21h50
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -26,12 +27,10 @@ class StepeOneFragment : Fragment() {
         binding.btnSave.btnModelSmal.backgroundTintList = resources.getColorStateList(R.color.primary)
         binding.btnSave.btnModelSmal.setOnClickListener {
             // Vérifier si les informations saisies sont valides et retourner true ou false en conséquence
-            if (validateData()) {
+            if (!validateData()) {
                 Utils.loading(true, binding.progressBar, binding.btnSave.btnModelSmal)
                 Handler().postDelayed({
                     Utils.loading(false, binding.progressBar, binding.btnSave.btnModelSmal)
-                    // Si les informations sont valides, passer à l'étape suivante
-                    // Récupérer l'instance de l'activité parente
                     val parentActivity = activity as RegisterActivity
                     // Passer à l'étape suivante
                     parentActivity.viewPager.currentItem += 1

@@ -1,4 +1,5 @@
 package cd.bmfundacademia.com.Adapter
+//creer par babi mumba le 12/05/2024 a 21h50
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

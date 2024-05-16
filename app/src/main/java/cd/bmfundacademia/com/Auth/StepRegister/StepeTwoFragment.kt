@@ -1,15 +1,26 @@
 package cd.bmfundacademia.com.Auth.StepRegister
 
+//creer par babi mumba le 12/05/2024 a 21h52
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import cd.bmfundacademia.com.Auth.RegisterActivity
+import cd.bmfundacademia.com.Model.University
 import cd.bmfundacademia.com.R
+import cd.bmfundacademia.com.databinding.BottomSheetUniversitiesBinding
 import cd.bmfundacademia.com.databinding.FragmentStepeTwoBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.firestore.FirebaseFirestore
 
 class StepeTwoFragment : Fragment() {
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var bottomSheetDialog: BottomSheetDialog
+    lateinit var adapter: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,6 +31,9 @@ class StepeTwoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        firestore = FirebaseFirestore.getInstance()
+        adapter = ArrayAdapter<String>(requireActivity(),android.R.layout.simple_list_item_1)
+
         binding = FragmentStepeTwoBinding.inflate(layoutInflater)
         binding.btnSave.btnModelSmal.text = "Terminer"
         //change text color
@@ -37,8 +51,51 @@ class StepeTwoFragment : Fragment() {
             }
 
         }
+        binding.university.setOnClickListener {
+            showUniversityList()
+        }
         return binding.root
     }
+    private fun showUniversityList() {
+        val liste_univer= ArrayList<University>()
+        liste_univer.add(University("Unilu","universite de lubumabshi"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        liste_univer.add(University("Unh","universite nouveaux horizon"))
+        val liste_univer_names = ArrayList<String>()
+        for (university in liste_univer) {
+            liste_univer_names.add(university.Nom)
+        }
+
+
+
+        val binding = BottomSheetUniversitiesBinding.inflate(layoutInflater)
+        bottomSheetDialog = BottomSheetDialog(requireActivity())
+        bottomSheetDialog.setContentView(binding.root)
+        bottomSheetDialog.show()
+        adapter.clear()
+        binding.universitiesList.adapter = adapter
+
+        adapter.addAll(liste_univer_names)
+
+        binding.universitiesList.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(requireActivity(), id.toString(), Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
+
+
+
+
+    }
+
+
 
     fun validateData(): Boolean {
         // Vérifier si les informations saisies sont valides et retourner true ou false en conséquence

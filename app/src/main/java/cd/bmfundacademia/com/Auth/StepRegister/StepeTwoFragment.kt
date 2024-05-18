@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import cd.bmfundacademia.com.Activity.SearchAcademiqActivity
 import cd.bmfundacademia.com.Auth.RegisterActivity
 import cd.bmfundacademia.com.Model.University
 import cd.bmfundacademia.com.R
+import cd.bmfundacademia.com.Util.Utils
 import cd.bmfundacademia.com.databinding.BottomSheetUniversitiesBinding
 import cd.bmfundacademia.com.databinding.FragmentStepeTwoBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -21,11 +23,7 @@ class StepeTwoFragment : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var bottomSheetDialog: BottomSheetDialog
     lateinit var adapter: ArrayAdapter<String>
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    private val selectedUniversities = ArrayList<String>()
     lateinit var binding: FragmentStepeTwoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +52,9 @@ class StepeTwoFragment : Fragment() {
         binding.university.setOnClickListener {
             showUniversityList()
         }
+        binding.faculter.setOnClickListener {
+            Utils.Intent1(requireActivity(), SearchAcademiqActivity::class.java)
+        }
         return binding.root
     }
     private fun showUniversityList() {
@@ -68,9 +69,8 @@ class StepeTwoFragment : Fragment() {
         liste_univer.add(University("Unh","universite nouveaux horizon"))
         val liste_univer_names = ArrayList<String>()
         for (university in liste_univer) {
-            liste_univer_names.add(university.Nom)
+            liste_univer_names.add(university.nom)
         }
-
 
 
         val binding = BottomSheetUniversitiesBinding.inflate(layoutInflater)
@@ -83,7 +83,13 @@ class StepeTwoFragment : Fragment() {
         adapter.addAll(liste_univer_names)
 
         binding.universitiesList.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(requireActivity(), id.toString(), Toast.LENGTH_SHORT).show()
+            val selectedUniversity = liste_univer_names[position]
+            selectedUniversities.add(selectedUniversity)
+            Toast.makeText(requireActivity(), selectedUniversity, Toast.LENGTH_SHORT).show()
+            bottomSheetDialog.dismiss()
+
+            // Mettre à jour le texte du bouton avec les noms d'universités sélectionnés
+            updateButtonLabel()
         }
 
 
@@ -98,7 +104,10 @@ class StepeTwoFragment : Fragment() {
 
 
     fun validateData(): Boolean {
-        // Vérifier si les informations saisies sont valides et retourner true ou false en conséquence
         return true
+    }
+    private fun updateButtonLabel() {
+        val selectedUniversityNames = selectedUniversities.lastOrNull() ?: ""
+        binding.university.text = selectedUniversityNames
     }
 }

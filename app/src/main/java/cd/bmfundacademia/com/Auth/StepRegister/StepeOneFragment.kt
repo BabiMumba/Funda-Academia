@@ -35,7 +35,7 @@ class StepeOneFragment : Fragment() {
                     // Passer à l'étape suivante
                     parentActivity.viewPager.currentItem += 1
 
-                }, 3000)
+                }, 1000)
             }
 
         }

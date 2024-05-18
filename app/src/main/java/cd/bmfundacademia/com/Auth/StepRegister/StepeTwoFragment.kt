@@ -112,7 +112,7 @@ class StepeTwoFragment : Fragment() {
             updateButtonLabel()
             Utils.ShowToast(requireActivity(), selectedUniversity.toString())
         }else{
-            Utils.ShowToast(requireActivity(), "Aucune université sélectionnée")
+            Utils.ShowToast(requireActivity(), "Aucune université sélectionnée")//show toast
         }
     }
 

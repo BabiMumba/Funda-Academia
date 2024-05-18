@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import cd.bmfundacademia.com.Adapter.AcademiqueAdapter
+import cd.bmfundacademia.com.Model.University
 import cd.bmfundacademia.com.R
 import cd.bmfundacademia.com.databinding.ActivitySearchAcademiqBinding
 
@@ -13,7 +14,7 @@ class SearchAcademiqActivity : AppCompatActivity() {
     lateinit var binding: ActivitySearchAcademiqBinding
     lateinit var adapter: AcademiqueAdapter
     //liste
-    val liste = ArrayList<String>()
+    val liste = ArrayList<University>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchAcademiqBinding.inflate(layoutInflater)
@@ -22,15 +23,24 @@ class SearchAcademiqActivity : AppCompatActivity() {
         //enableEdgeToEdge()
 
         //liste
-        liste.add("Universite de lubumbashi")
-        liste.add("Universite de kinshasa")
-        liste.add("Universite de kisangani")
-        liste.add("Universite de bandundu")
-        liste.add("Universite de matadi")
-        liste.add("Universite de bukavu")
+        liste.add(University("Unilu","universite de lubumabshi"))
+        liste.add(University("Unh","universite nouveaux horizon"))
+        liste.add(University("Unilu","universite de lubumabshi"))
+
         adapter = AcademiqueAdapter(liste)
         binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
+
+        adapter.setOnItemClickListener(object : AcademiqueAdapter.OnItemClickListener {
+            override fun onItemClick(university: University) {
+                //traitement
+                val nom = university.nom
+                val intent = intent
+                intent.putExtra("nom", nom)
+                setResult(RESULT_OK, intent)
+                finish()
+            }
+        })
 
 
 

@@ -2,6 +2,8 @@ package cd.bmfundacademia.com.Auth.StepRegister
 
 //creer par babi mumba le 12/05/2024 a 21h52
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -100,8 +102,23 @@ class StepeTwoFragment : Fragment() {
 
 
     }
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (resultCode == Activity.RESULT_CANCELED && requestCode == REQUEST_READ) {
+            val selectedUniversity = data?.getStringExtra("nom")
+            selectedUniversities.add(selectedUniversity!!)
+            updateButtonLabel()
+            Utils.ShowToast(requireActivity(), selectedUniversity.toString())
+        }else{
+            Utils.ShowToast(requireActivity(), "Aucune université sélectionnée")
+        }
+    }
 
+    companion object {
+        private const val REQUEST_READ = 2
+    }
 
     fun validateData(): Boolean {
         return true

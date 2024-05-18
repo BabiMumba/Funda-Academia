@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 
 object Utils {
 
@@ -22,5 +23,9 @@ object Utils {
             btn.visibility = View.VISIBLE
             progressBar.visibility = View.INVISIBLE
         }
+    }
+
+    fun ShowToast(context: Context?, message: String?) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }

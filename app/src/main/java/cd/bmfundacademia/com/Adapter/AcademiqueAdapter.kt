@@ -5,11 +5,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import cd.bmfundacademia.com.Model.University
 import cd.bmfundacademia.com.R
 
-class AcademiqueAdapter(val liste:ArrayList<String>): RecyclerView.Adapter<AcademiqueAdapter.ViewHolder>() {
+class AcademiqueAdapter(val liste:ArrayList<University>): RecyclerView.Adapter<AcademiqueAdapter.ViewHolder>() {
+    private var onItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        onItemClickListener = listener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(university: University)
+    }
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
+
         val nom:TextView = itemView.findViewById(R.id.title_element)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,7 +30,10 @@ class AcademiqueAdapter(val liste:ArrayList<String>): RecyclerView.Adapter<Acade
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nom.text = liste[position]
+        holder.nom.text = liste[position].nom
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(liste[position])
+        }
     }
 
     override fun getItemCount(): Int {
